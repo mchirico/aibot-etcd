@@ -1,18 +1,16 @@
 package etcd
 
-
-
 import (
 	"github.com/mchirico/go.etcd/pkg/etcdutils"
-
 	"log"
-	"time"
+
 	"fmt"
+	"time"
 )
 
 func D(subkey string) {
 
-	e, cancel := etcdutils.NewETC()
+	e, cancel := etcdutils.NewETC("server")
 	defer cancel()
 
 
@@ -25,6 +23,15 @@ func D(subkey string) {
 	e.PutWithLease(key, msg, 300*600)
 	e.PutWithLease(key2, msg, 300*600)
 
+}
+
+func Query() {
+
+	e, cancel := etcdutils.NewETC("server")
+	defer cancel()
+
+
+
 
 	result, _ := e.GetWithPrefix("aibot-gmail")
 
@@ -32,5 +39,6 @@ func D(subkey string) {
 	for i, v := range result.Kvs {
 		log.Printf("result.Kvs[%d]: %s, ver: %d,  lease: %d\n", i, v.Value, v.Version, v.Lease)
 	}
+
 
 }
