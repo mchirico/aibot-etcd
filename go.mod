@@ -1,4 +1,4 @@
-module github.com/mchirico/aibot-gmail/pkg/etcd
+module github.com/mchirico/aibot-etcd
 
 go 1.15
 
