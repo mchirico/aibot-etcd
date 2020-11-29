@@ -1,7 +1,6 @@
 package etcd
 
 import (
-
 	"testing"
 )
 
