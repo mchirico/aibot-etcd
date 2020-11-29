@@ -28,6 +28,22 @@ func Query() {
 	e, cancel := etcdutils.NewETC("server")
 	defer cancel()
 
+
+	result, _ := e.GetWithPrefix("aibot-gmail")
+
+	for i, v := range result.Kvs {
+		log.Printf("result.Kvs[%d]: %s, ver: %d,  lease: %d\n", i, v.Value, v.Version, v.Lease)
+	}
+
+}
+
+func Delete() {
+
+	e, cancel := etcdutils.NewETC("server")
+	defer cancel()
+
+	e.DeleteWithPrefix("aibot-gmail")
+
 	result, _ := e.GetWithPrefix("aibot-gmail")
 
 	for i, v := range result.Kvs {
